@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('shop.index');
-});
+});*/
 
 Auth::routes();
 
@@ -23,6 +23,10 @@ Route::get('/', 'MainController@index')->name('home');
 Route::group(['prefix' => 'dashboard'], function () {
     //Route::resource('/', 'TestController');
     Route::resource('/news', 'NewsController');
+});
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::resource('/categories', 'CategoriesController');
 });
 //Route::get('/home', 'HomeController@index')->name('home');
 

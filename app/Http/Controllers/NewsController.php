@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\MyHelpers;
 use App\News;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -28,7 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.news.create');
     }
 
     /**
@@ -39,7 +42,27 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            /*$novost = new News();
+            $novost->title = $request->get('title');
+            $novost->img = $request->get('img');
+            $novost->save();*/
+            //Валидация данных
+            $request->validate([
+                'title' => 'required|max:255',
+                'introtext' => 'required',
+                'text' => 'required',
+            ]);
+
+            $data = $request->all();
+            $data['alias'] = date('d-m-Y') . '-' . MyHelpers::str2url($data['title']);
+            $data['user_id'] = Auth::id();
+
+            //dd($request);
+            //dd($data);
+
+            News::create($data);
+
+            return redirect()->route('news.index');
     }
 
     /**
