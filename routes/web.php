@@ -21,11 +21,12 @@ Auth::routes();
 Route::get('/', 'MainController@index')->name('home');
 
 Route::group(['prefix' => 'dashboard'], function () {
+    //Route::resource('/', 'TestController');
     Route::resource('/news', 'NewsController');
 });
 //Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/test', 'TestController@index')->name('test');
+Route::get('/dashboard', 'TestController@dashboard')->name('dashboard');
 Route::group(['prefix' => 'test'], function (){
 //Список
         Route::get('/index', 'TestController@index');

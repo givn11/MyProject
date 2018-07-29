@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
-    /*public function index(){
+    public function dashboard(){
         //echo __METHOD__;
         //echo ('dgfdjghjghkjhglkhgh');
-        return view('dashboard.main');
-    }*/
+        return view('dashboard.app');
+    }
     public function index()
     {
         //$news = DB::table('news')->get(); //Получаем все новости из таблицы news
